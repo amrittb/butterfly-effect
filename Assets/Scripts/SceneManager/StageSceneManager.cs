@@ -1,16 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class StageSceneManager : MonoBehaviour {
 
-	// Use this for initialization
+    public NarratorEngine narrator;
+
 	void Start () {
-		
+        this.ShowSceneNarration();	
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    private void ShowSceneNarration()
+    {
+        narrator.ShowNarration();
+    }
 }
