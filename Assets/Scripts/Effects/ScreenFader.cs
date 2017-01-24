@@ -35,8 +35,8 @@ public class ScreenFader : MonoBehaviour {
     }
 
 
-    void FadeToBlack() {
-        panelImage.color = Color.Lerp(panelImage.color, Color.black, fadeSpeed * Time.deltaTime);
+    void FadeToWhite() {
+        panelImage.color = Color.Lerp(panelImage.color, Color.white, fadeSpeed * Time.deltaTime);
     }
 
     public void StartScene() {
@@ -68,10 +68,10 @@ public class ScreenFader : MonoBehaviour {
 
         panelImage.enabled = true;
 
-        FadeToBlack();
+        FadeToWhite();
 
         if (panelImage.color.a >= 0.95f) {
-            panelImage.color = Color.black;
+            panelImage.color = Color.white;
 
             sceneEnding = false;
             sceneEnded = true;

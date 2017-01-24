@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class StageSceneManager : MonoBehaviour {
 
+    public ScreenFader fader;
+
     public NarratorEngine narrator;
 
 	void Start () {
+        this.fader.StartScene();
         this.ShowSceneNarration();	
 	}
 

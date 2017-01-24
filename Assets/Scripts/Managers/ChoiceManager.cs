@@ -14,7 +14,13 @@ public class ChoiceManager : MonoBehaviour {
 
     public PopUpPanelView consequencesPopup;
 
+    public ScreenFader fader;
+
     private DoorView door;
+
+    private bool shouldLoadScene;
+
+    private int sceneNumber;
 
     void Start () {
         this.ResetNumChoices();
@@ -24,13 +30,23 @@ public class ChoiceManager : MonoBehaviour {
         this.consequencesPopup.positiveButton.onClick.AddListener(OnChoiceChoosed);
 	}
 
+    void Update()
+    {
+        if(this.shouldLoadScene && this.fader.HasSceneEnded())
+        {
+            SceneManager.LoadScene(this.sceneNumber);
+        }
+    }
+
     private void OnChoiceChoosed()
     {
         int currentIndex = SceneManager.GetActiveScene().buildIndex;
 
         if(SceneManager.GetSceneByBuildIndex(currentIndex + 1) != null)
         {
-            SceneManager.LoadScene(currentIndex + 1);
+            this.shouldLoadScene = true;
+            this.sceneNumber = currentIndex + 1;
+            this.fader.EndScene();
         }
     }
 
@@ -77,7 +93,7 @@ public class ChoiceManager : MonoBehaviour {
 
     private void ShowChoice(string choice)
     {
-        popup.CustomizeAndShowPanel(choice, "Sure, Take me throught this.", "I'll choose another door.");
+        popup.CustomizeAndShowPanel(choice, "Sure, Take me through this.", "I'll choose another door.");
     }
 
     private void ShowConsequence(string consequence)
